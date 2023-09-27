@@ -1,38 +1,38 @@
 #include "lists.h"
 
 /**
- * free_listint_safe - Frees a linked list safely.
- * @h: Pointer to the first node in the linked list.
- *
- * Return: The number of elements in the freed list.
- */
+* free_listint_safe - Frees a linked list safely.
+* @h: Pointer to the first node in the linked list.
+*
+* Return: The number of elements in the freed list.
+*/
 size_t free_listint_safe(listint_t **h)
 {
-	size_t len = 0;
-	int diff;
-	listint_t *temp;
+size_t len = 0;
+int diff;
+listint_t *temp;
 
-	if (h == NULL || *h == NULL)
-		return (0);
+if (h == NULL || *h == NULL)
+return (0);
 
-	for (; *h != NULL; len++)
-	{
-		diff = *h - (*h)->next;
-		if (diff > 0)
-		{
-			temp = (*h)->next;
-			free(*h);
-			*h = temp;
-		}
-		else
-		{
-			free(*h);
-			*h = NULL;
-			break;
-		}
-	}
+for (; *h != NULL; len++)
+{
+diff = *h - (*h)->next;
+if (diff > 0)
+{
+temp = (*h)->next;
+free(*h);
+*h = temp;
+}
+else
+{
+free(*h);
+*h = NULL;
+break;
+}
+}
 
-	*h = NULL;
+*h = NULL;
 
-	return (len);
+return (len);
 }
