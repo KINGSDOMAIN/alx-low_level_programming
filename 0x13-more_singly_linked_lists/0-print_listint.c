@@ -16,5 +16,5 @@ printf("%d\n", h->n);
 num++;
 }
 
-return num;
+return (num);
 }
