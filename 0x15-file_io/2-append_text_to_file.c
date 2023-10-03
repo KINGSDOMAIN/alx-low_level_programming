@@ -8,35 +8,26 @@
  * Return: If the function fails, it returns -1.
  *         Otherwise, it returns 1.
  */
-int create_file(const char *filename, char *text_content)
+int append_text_to_file(const char *filename, char *text_content)
 {
-	int fd, w, len = 0;
+	int p, x, len = 0;
 
-	// Check if the filename is NULL
-	if (filename is equal to NULL)
+	if (filename == NULL)
 		return (-1);
 
-	// Calculate the length of the text_content string
-	if (text_content is not equal to NULL)
+	if (text_content != NULL)
 	{
-		// Calculate the length by counting the characters in text_content
 		for (len = 0; text_content[len];)
-			increment len by 1;
+			len++;
 	}
 
-	// Create the file with read and write permissions
-	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
+	p = open(filename, O_WRONLY | O_APPEND);
+	x = write(p, text_content, len);
 
-	// Write the text_content to the file
-	w = write(fd, text_content, len);
-
-	// Check for errors in opening or writing to the file
-	if (fd is equal to -1 or w is equal to -1)
+	if (p == -1 || x == -1)
 		return (-1);
 
-	// Close the file
-	close(fd);
+	close(p);
 
-	// Return 1 to indicate success
 	return (1);
 }
